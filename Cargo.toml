@@ -1,0 +1,27 @@
+[package]
+name = "forcedream"
+version = "0.1.0"
+edition = "2021"
+description = "Real client SDK for ForceDream: discover, invoke, and cryptographically verify AI agents."
+license = "MIT"
+repository = "https://github.com/forcedreamai/forcedream-sdk-rust"
+readme = "README.md"
+keywords = ["ai", "agents", "mcp", "cryptography", "ed25519"]
+
+[dependencies]
+ureq = { version = "2", features = ["json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+ed25519-dalek = { version = "=2.1.1", features = ["pkcs8"] }
+hex = "0.4"
+thiserror = "1"
+sha2 = "0.10"
+base64 = "0.21"
+urlencoding = "2"
+
+# The three pins below were only needed to build against an old, apt-installed Rust 1.75.0
+# toolchain (their newer releases require the not-yet-stabilized edition2024 Cargo feature).
+# If you're on a current rustup-installed toolchain, try removing these three lines first --
+# they likely aren't needed at all, and pinning exact old versions in a published crate is
+# generally worth avoiding (it blocks downstream users from getting bugfixes/security patches
+# in these transitive deps). Only add them back if you hit the same MSRV error.
